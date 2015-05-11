@@ -5,8 +5,7 @@ module Locobot
       def self.build(command_str)
         operator = /(?<operator>[A-Z]+)\(*/.match(command_str)[:operator]
         command = Commands.const_get(operator.capitalize).new(command_str) if valid_operators.include?(operator)
-        return command if !command.nil? && command.valid?
-        return nil
+        return (!command.nil? && command.valid?) ? command : nil
       end
 
       private

@@ -14,18 +14,18 @@ module Locobot
 
     def commands=(input)
       parser = Locobot::Config.input_parser
-      @commands = filter_commands(parser.parse(input))
+      @commands = filter_commands(parser.parse(input)).reverse
     end
 
     def run(commands)
       command = commands.pop
       return if command.nil?
-      @position = command.exec(@position)
+      @position = command.exec(Array.new(@position))
       run(commands)
     end
 
     def position
-      @position ||= [0, 0, "NORTH"]
+      @position ||= [-1, -1, "NORTH"]
     end
 
     private

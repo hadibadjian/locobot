@@ -5,11 +5,9 @@ module Locobot
   module Commands
 
     class Move < Base
-      def valid?
-        true
-      end
 
       def exec(position)
+        super
         result = Array.new(position)
         case position[2]
         when 'NORTH'
@@ -23,6 +21,13 @@ module Locobot
         end
         out_of_boundary?(result) ? position : result
       end
+
+      private
+
+        def validity_expression
+          /^MOVE$/
+        end
+
     end
 
   end

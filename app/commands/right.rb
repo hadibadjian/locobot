@@ -5,11 +5,9 @@ module Locobot
   module Commands
 
     class Right < Base
-      def valid?
-        true
-      end
 
       def exec(position)
+        super
         case position[2]
         when 'NORTH'
           position[2] = 'EAST'
@@ -22,6 +20,13 @@ module Locobot
         end
         position
       end
+
+      private
+
+        def validity_expression
+          /^RIGHT$/
+        end
+
     end
 
   end

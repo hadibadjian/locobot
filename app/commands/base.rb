@@ -3,6 +3,7 @@ module Locobot
   module Commands
 
     class Base
+
       attr_accessor :command_str
       attr_accessor :operator
       attr_accessor :params
@@ -20,16 +21,24 @@ module Locobot
       end
 
       def valid?
-        raise 'Subclasses should overwrite this'
+        validity_expression.match(@command_str).nil? ? false : true
+      end
+
+      def exec(position)
+        return position if out_of_boundary?(position)
+        position
       end
 
       def out_of_boundary?(result)
         result[0] > 4 || result[0] < 0 || result[1] > 4 || result[1] < 0
       end
 
-      def to_s
-        "#{@operator}" + "#{params}"
-      end
+      private
+
+        def validity_expression
+          raise 'has to be overwritten!'
+        end
+
     end
 
   end

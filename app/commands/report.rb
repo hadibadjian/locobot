@@ -5,13 +5,10 @@ module Locobot
   module Commands
 
     class Report < Base
-      def valid?
-        true
-      end
-
-      def exec(position)
-        position
-      end
+      private
+        def validity_expression
+          /^REPORT$/
+        end
     end
 
   end
