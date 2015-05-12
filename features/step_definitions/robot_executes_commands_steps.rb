@@ -7,8 +7,8 @@ Given(/^the command is (.*)$/) do |arg|
 end
 
 When(/^the robot runs the command$/) do
-  @bot.commands = @input
-  @bot.run @bot.commands
+  @input_parser.read @input
+  @bot.run
 end
 
 Then(/^the robot position should be \[\-?(\d+), \-?(\d+), (.*)\]$/) do |arg1, arg2, arg3|

@@ -7,7 +7,7 @@ Feature:
     Given the robot is configured
 
   Scenario Outline: Receive commands
-    Given the input is comma separated command <command>
+    Given the input is JSON formatted with command <command>
     When the robot receives the input
     Then the processed command list should contain <count> commands
 

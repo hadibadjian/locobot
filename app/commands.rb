@@ -1,0 +1,6 @@
+require 'app/commands/builder'
+require 'app/commands/place'
+require 'app/commands/move'
+require 'app/commands/left'
+require 'app/commands/right'
+require 'app/commands/report'
