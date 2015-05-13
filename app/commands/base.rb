@@ -4,6 +4,8 @@ module Locobot
 
     class Base
 
+      FACES = { north: 'NORTH', east: 'EAST', south: 'SOUTH', west: 'WEST' }
+
       attr_accessor :command_str
       attr_accessor :operator
       attr_accessor :params
@@ -14,9 +16,14 @@ module Locobot
         if valid?
           match_data = /(?<operator>[A-Z]+)\(?(?<params>(.*))\)?/.match(command_str)
           @operator  = match_data[:operator]
-          @params    = match_data[:params].gsub(/[\(\)]/, '').split(',').map(&:strip)
-          @params[0] = params[0].to_i
-          @params[1] = params[1].to_i
+          args    = match_data[:params].gsub(/[\(\)]/, '').split(',').map(&:strip)
+
+          @params = {}
+          unless args.empty?
+            @params[:x] = args[0].to_i
+            @params[:y] = args[1].to_i
+            @params[:face] = args[2]
+          end
         end
       end
 
@@ -30,7 +37,7 @@ module Locobot
       end
 
       def out_of_boundary?(result)
-        result[0] > 4 || result[0] < 0 || result[1] > 4 || result[1] < 0
+        result[:x] > 4 || result[:x] < 0 || result[:y] > 4 || result[:y] < 0
       end
 
       private

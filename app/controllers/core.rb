@@ -13,7 +13,7 @@ module Locobot
     end
 
     def position
-      @position ||= [-1, -1, "NORTH"]
+      @position ||= [x: -1, y: -1, face: 'NORTH']
     end
 
   end

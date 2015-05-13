@@ -8,17 +8,11 @@ module Locobot
 
       def exec(position)
         super
-        result = Array.new(position)
-        case position[2]
-        when 'NORTH'
-          result[1] += 1
-        when 'SOUTH'
-          result[1] -= 1
-        when 'EAST'
-          result[0] += 1
-        when 'WEST'
-          result[0] -= 1
-        end
+        result = position.clone
+
+        transform = transform_map[position[:face].downcase.to_sym]
+        result[transform[:key]] += transform[:operand]
+
         out_of_boundary?(result) ? position : result
       end
 
@@ -26,6 +20,15 @@ module Locobot
 
         def validity_expression
           /^MOVE$/
+        end
+
+        def transform_map
+          @transform_map ||= {
+            north: { key: :y, operand:  1 },
+            south: { key: :y, operand: -1 },
+            east:  { key: :x, operand:  1 },
+            west:  { key: :x, operand: -1 }
+          }
         end
 
     end

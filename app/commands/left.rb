@@ -1,4 +1,5 @@
 require 'app/commands/base'
+require 'lib/hash'
 
 module Locobot
 
@@ -8,16 +9,7 @@ module Locobot
 
       def exec(position)
         super
-        case position[2]
-        when 'NORTH'
-          position[2] = 'WEST'
-        when 'SOUTH'
-          position[2] = 'EAST'
-        when 'EAST'
-          position[2] = 'NORTH'
-        when 'WEST'
-          position[2] = 'SOUTH'
-        end
+        position[:face] = FACES.side_element position[:face].downcase.to_sym, -1
         position
       end
 
