@@ -1,4 +1,4 @@
-require 'app/commands/base'
+require 'commands/base'
 
 module Locobot
 
@@ -13,7 +13,7 @@ module Locobot
       private
 
         def validity_expression
-          /^PLACE\s*\(\d*,\s*\d*,\s*[NORTH|SOUTH|EAST|WEST]*\)$/
+          /^PLACE\s*\d*,\s*\d*,\s*[NORTH|SOUTH|EAST|WEST]*$/
         end
 
     end

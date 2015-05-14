@@ -1,4 +1,4 @@
-require 'app/commands/base'
+require 'commands/base'
 
 module Locobot
 

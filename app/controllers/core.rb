@@ -1,4 +1,4 @@
-require 'app/commands.rb'
+require 'commands'
 
 module Locobot
 

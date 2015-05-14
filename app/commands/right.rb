@@ -1,5 +1,5 @@
-require 'app/commands/base'
-require 'lib/hash'
+require 'commands/base'
+require 'hash'
 
 module Locobot
 

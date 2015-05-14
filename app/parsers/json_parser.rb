@@ -1,4 +1,5 @@
-require 'lib/string'
+require 'string'
+require 'commands'
 
 module Locobot
 
