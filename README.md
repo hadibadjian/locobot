@@ -1,9 +1,40 @@
 # Locobot
 A simulation of a toy robot moving on a square tabletop of 5x5 dimension.
 
-# Versions
-## v0.1.0
-### Requirements
+## Usage
+Configure the robot with appropriate input parser:
+
+- JSON Parser
+```ruby
+  Locobot::Config.input_parser = Locobot::Parser::JSONParser.new
+  Locobot::Config.command_separator = '->'
+```
+
+- File Parser
+```ruby
+  Locobot::Config.input_parser = Locobot::Parser::FileParser.new
+```
+
+Define the robot input commands, respectively:
+
+- JSON input
+```ruby
+  input = "{ \"commands\": \"PLACE 5, 5, NORTH -> MOVE -> LEFT -> RIGHT -> REPORT\" }"
+```
+
+- File input
+```ruby
+  input = '/file/path/file_parser_sample_1.txt'
+```
+
+Feed the input and run the robot!
+```ruby
+  Locobot::Config.input_parser.read input
+  Locobot::Core.new.run
+```
+
+## Versions
+### v0.1.0
 - No obstructions on the table
 - The robot is free to roam around on the table
 - The robot should not fall to destruction.
