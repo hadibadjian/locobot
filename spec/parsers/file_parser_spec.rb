@@ -18,7 +18,10 @@ RSpec.describe Locobot::Parser::FileParser do
   context "with correctly formatted input file" do
 
     before(:each) do
-      file_path = '/home/hadi/projects/locobot/spec/samples/file_parser_sample_1.txt'
+      path = File.dirname(__FILE__).split('/')
+      path.delete('parsers')
+      path << 'samples' << 'file_parser_sample_1.txt'
+      file_path = path.join('/')
       @parser.read(file_path)
     end
 

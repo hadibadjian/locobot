@@ -18,5 +18,9 @@ Then(/^the robot position should be \[\-?(\d+), \-?(\d+), (.*)\]$/) do |arg1, ar
 end
 
 Given(/^the input file is (.*)$/) do |arg1|
-  @input = '/home/hadi/projects/locobot/spec/samples/' + arg1
+  path = File.dirname(__FILE__).split('/')
+  path.delete('step_definitions')
+  path.delete('features')
+  path << 'spec' << 'samples' << arg1
+  @input = path.join('/')
 end
